@@ -21,6 +21,7 @@
         </div>
         <br>
         <p class="text-lg font-bold">Met witte rijst. (Nasi of bami voor meerprijs mogelijk.)</p>
+        <br>
         <p class="text-3xl font-bold">Prijs: €21,00</p>
     </div>
 @endsection

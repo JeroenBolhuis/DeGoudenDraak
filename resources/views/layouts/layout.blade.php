@@ -90,20 +90,22 @@
                                             <div class="mb-4">
                                                 <img src="images/dragon-small.png" class="float-left h-44" alt="Golden Dragon"> 
                                                 <img src="images/dragon-small-flipped.png" class="float-right h-44" alt="Golden Dragon"> 
-                                                <p class="text-4xl font-bold text-yellow-500">Chinees Indische Specialiteiten</p>
-                                                <p class="text-5xl font-bold text-yellow-500">De Gouden Draak</p>
+                                                <p class="text-4xl font-bold font-serif text-yellow-500">Chinees Indische Specialiteiten</p>
+                                                <p class="text-5xl font-bold font-serif text-yellow-500">De Gouden Draak</p>
                                             </div>
-                                            <table class="mx-auto">
-                                                <a href="{{ route('menu') }}" class="btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 px-6 rounded mx-1">
-                                                    Menukaart
-                                                </a>
-                                                <a href="{{ route('news') }}" class="btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 px-6 rounded mx-1">
-                                                    Nieuws
-                                                </a>
-                                                <a href="{{ route('contact') }}" class="btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 px-6 rounded mx-1">
-                                                    Contact
-                                                </a>
-                                            </table>
+                                            <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
+                                                <div class="flex px-1 py-2 border border-gray-500">
+                                                    <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+                                                        Menukaart
+                                                    </a>
+                                                    <a href="{{ route('news') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded mx-3">
+                                                        Nieuws
+                                                    </a>
+                                                    <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+                                                        Contact
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="mt-20 px-20">
                                             @yield('content')
