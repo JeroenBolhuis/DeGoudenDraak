@@ -105,7 +105,7 @@
                                                 </a>
                                             </table>
                                         </div>
-                                        <div class="mt-20">
+                                        <div class="mt-20 px-20">
                                             @yield('content')
                                         </div>
                                     </td>
