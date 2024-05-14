@@ -22,7 +22,7 @@ Route::get('/home', function () {
 Route::get('/news', function () {
     return view('pages.news');
 })->name('news');
-Route::get('/mmenu', function () {
+Route::get('/menu', function () {
     return view('pages.menu');
 })->name('menu');
 Route::get('/contact', function () {

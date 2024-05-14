@@ -17,9 +17,7 @@
 			<tbody>
 				<tr class="h-12 bg-normal-red">
 					<td class="text-center w-3/10 text-yellow-500 text-3xl">
-						<img class="inline align-middle h-12" src="images/dragon-small.png" alt="Golden Dragon">
-						<span class="font-chinese_takeaway">De Gouden Draak</span>
-						<img class="inline align-middle h-12 transform flip" src="images/dragon-small-flipped.png" alt="Golden Dragon">
+                        @include('partials.logo')
 					</td>
 					<td>
 						<a href="paginas/aanbiedingen.html" class="text-yellow-500 font-bold no-underline">
@@ -29,9 +27,7 @@
 						</a>
 					</td>
 					<td class="text-center w-3/10 text-yellow-500 text-3xl">
-						<img class="inline align-middle h-12" src="images/dragon-small.png" alt="Golden Dragon">
-						<span class="font-chinese_takeaway">De Gouden Draak</span>
-						<img class="inline align-middle h-12 transform flip" src="images/dragon-small-flipped.png" alt="Golden Dragon">
+                        @include('partials.logo')
 					</td>
 				</tr>
 				<!-- CONTENT HERE -->
