@@ -4,13 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>De gouden draak</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         @vite(['resources/js/app.js'])
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css'])
     </head>
 	<body class="px-4 py-2 bg-darker-red">
 		<table id="main_table" class="p-5 w-full border-collapse">
@@ -86,8 +83,8 @@
                                             <div class="mb-4">
                                                 <img src="images/dragon-small.png" class="float-left h-44" alt="Golden Dragon"> 
                                                 <img src="images/dragon-small-flipped.png" class="float-right h-44" alt="Golden Dragon"> 
-                                                <p class="text-4xl font-bold font-serif text-yellow-500">Chinees Indische Specialiteiten</p>
-                                                <p class="text-5xl font-bold font-serif text-yellow-500">De Gouden Draak</p>
+                                                <p class="text-4xl font-serif font-bold text-yellow-500">Chinees Indische Specialiteiten</p>
+                                                <p class="text-5xl font-serif font-bold text-yellow-500">De Gouden Draak</p>
                                             </div>
                                             <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
                                                 <div class="flex px-1 py-2 border border-gray-500">
@@ -110,7 +107,7 @@
                                 </tr>
 							</tbody>
 						</table>
-						<div class="text-center"><a href="{{ route('contact') }}" class="text-yellow-500">Naar Contact</a></div>
+						<div class="text-center font-serif"><a href="{{ route('contact') }}" class="text-yellow-500">Naar Contact</a></div>
 					</td>
 					<td class="w-5"></td>
 					<td class="w-5"></td>
