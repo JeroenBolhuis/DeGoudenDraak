@@ -40,8 +40,14 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/kassa', function () {
-        return view('admin.index');
+        return view('admin.kassa');
     })->name('kassa');
+    Route::get('/kassamenu', function () {
+        return view('admin.menu');
+    })->name('kassamenu');
+    Route::get('/sales', function () {
+        return view('admin.sales');
+    })->name('sales');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

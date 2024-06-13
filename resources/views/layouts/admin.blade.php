@@ -9,69 +9,70 @@
         @vite(['resources/js/app.js'])
         @vite(['resources/css/app.css'])
     </head>
-	<body class="px-4 py-2 bg-darker-red">
+	<body class="px-4 py-2 bg-zinc-300">
 		<table id="main_table" class="p-5 w-full border-collapse">
 			<tbody>
-				<tr class="h-12 bg-normal-red">
-					<td class="text-center w-3/10 text-yellow-500 text-3xl">
-                        @include('partials.logo')
+				<tr class="h-7 bg-white">
+					<td colspan="9">
+						<div>
+							<div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
+								<div class="flex px-1 pt-2 pb-4">
+									<a href="{{ route('kassa') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
+										Kassa
+									</a>
+									<a href="{{ route('kassamenu') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center mx-3">
+										Gerechten
+									</a>
+									<a href="{{ route('sales') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
+										Verkoop Overzicht
+									</a>
+									@if (Auth::check())
+									<a href="{{ route('home') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center ml-3">
+										Website
+									</a>
+									@endif
+								</div>
+							</div>
+						</div>
 					</td>
-					<td>
-						<a href="paginas/aanbiedingen.html" class="text-yellow-500 font-bold no-underline">
-							<marquee behavior="scroll" direction="left">
-								Welkom bij De Gouden Draak @if (Auth::check()) {{ Auth::user()->name }} @endif. Klik op deze tekst om de aanbiedingen van deze week te zien!
-							</marquee>
-						</a>
-					</td>
-					<td class="text-center w-3/10 text-yellow-500 text-3xl">
-                        @include('partials.logo')
-					</td>
-				</tr>
-				<!-- CONTENT HERE -->
-			</tbody>
-		</table>
-		<table id="main_table" class="p-5 w-full border-collapse">
-			<tbody>
-				<tr class="h-7 bg-normal-red">
-					<td colspan="9"></td>
 				</tr>
 				<tr></tr>
-				<tr class="h-5 bg-normal-red">
+				<tr class="h-5 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-t-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-t-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
-					<td class="border-t-4 border-yellow-500 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-l-4 border-t-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-t-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-t-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
+					<td class="border-t-4 border-blue-800 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-l-4 border-t-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-t-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-5 bg-normal-red">
+				<tr class="h-5 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
 					<td></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-5 bg-normal-red">
+				<tr class="h-5 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
 					<td class="w-5"></td>
 					<td></td>
 					<td class="w-5"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-b-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-10 bg-normal-red">
+				<tr class="h-10 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-r-4 border-yellow-500 border-l-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-blue-800 border-l-4 border-blue-800"></td>
 					<td class="w-5"></td>
 					<td class="w-5"></td>
 					<td class="text-center">
@@ -79,80 +80,53 @@
 							<tbody>
                                 <tr>
                                     <td colspan="3">
-                                        <div>
-                                            <div class="mb-4">
-                                                <img src="images/dragon-small.png" class="float-left h-44" alt="Golden Dragon"> 
-                                                <img src="images/dragon-small-flipped.png" class="float-right h-44" alt="Golden Dragon"> 
-                                                <p class="text-4xl font-serif font-bold text-yellow-500">Chinees Indische Specialiteiten</p>
-                                                <p class="text-5xl font-serif font-bold text-yellow-500">De Gouden Draak</p>
-                                            </div>
-                                            <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
-                                                <div class="flex px-1 py-2 border border-gray-500">
-                                                    <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
-                                                        Menukaart
-                                                    </a>
-                                                    <a href="{{ route('news') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded mx-3">
-                                                        Nieuws
-                                                    </a>
-                                                    <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
-                                                        Contact
-                                                    </a>
-													@if (Auth::check())
-                                                    <a href="{{ route('kassa') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
-                                                        Kassa
-                                                    </a>
-													@endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-20 px-20">
+                                        <div class="px-20">
                                             @yield('content')
                                         </div>
                                     </td>
                                 </tr>
 							</tbody>
 						</table>
-						<div class="text-center font-serif"><a href="{{ route('contact') }}" class="text-yellow-500">Naar Contact</a></div>
 					</td>
 					<td class="w-5"></td>
 					<td class="w-5"></td>
-					<td class="w-5 border-r-4 border-yellow-500 border-l-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-blue-800 border-l-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-5 bg-normal-red">
+				<tr class="h-5 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-r-4 border-yellow-500 border-t-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-blue-800 border-t-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
 					<td class="w-5"></td>
 					<td></td>
 					<td class="w-5"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-t-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-5 bg-normal-red">
+				<tr class="h-5 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-t-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-t-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
 					<td></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-t-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-5 bg-normal-red">
+				<tr class="h-5 bg-white">
 					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-yellow-500"></td>
-					<td class="border-t-4 border-yellow-500 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-l-4 border-yellow-500"></td>
-					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
-					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-blue-800"></td>
+					<td class="border-t-4 border-blue-800 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-l-4 border-blue-800"></td>
+					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
+					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
 					<td class="w-7"></td>
 				</tr>
-				<tr class="h-7 bg-normal-red">
+				<tr class="h-7 bg-white">
 					<td colspan="9"></td>
 				</tr>
 			</tbody>
