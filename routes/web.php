@@ -16,23 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('app.index');
 });
 
 Route::get('/home', function () {
-    return view('pages.home');
+    return view('app.index');
 })->name('home');
 
 Route::get('/news', function () {
-    return view('pages.news');
+    return view('app.news');
 })->name('news');
 
 Route::get('/menu', function () {
-    return view('pages.menu');
+    return view('app.menu');
 })->name('menu');
 
 Route::get('/contact', function () {
-    return view('pages.contact');
+    return view('app.contact');
 })->name('contact');
 
 Route::get('/dashboard', function () {
@@ -40,6 +40,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/kassa', function () {
+        return view('admin.kassa');
+    })->name('kassa');
+    Route::get('/kassamenu', function () {
+        return view('admin.menu');
+    })->name('kassamenu');
+    Route::get('/sales', function () {
+        return view('admin.sales');
+    })->name('sales');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

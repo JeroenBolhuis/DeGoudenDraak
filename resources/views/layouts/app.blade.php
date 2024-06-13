@@ -1,36 +1,162 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>De gouden draak</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/js/app.js'])
+        @vite(['resources/css/app.css'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+	<body class="px-4 py-2 bg-darker-red">
+		<table id="main_table" class="p-5 w-full border-collapse">
+			<tbody>
+				<tr class="h-12 bg-normal-red">
+					<td class="text-center w-3/10 text-yellow-500 text-3xl">
+                        @include('partials.logo')
+					</td>
+					<td>
+						<a href="paginas/aanbiedingen.html" class="text-yellow-500 font-bold no-underline">
+							<marquee behavior="scroll" direction="left">
+								Welkom bij De Gouden Draak @if (Auth::check()) {{ Auth::user()->name }} @endif. Klik op deze tekst om de aanbiedingen van deze week te zien!
+							</marquee>
+						</a>
+					</td>
+					<td class="text-center w-3/10 text-yellow-500 text-3xl">
+                        @include('partials.logo')
+					</td>
+				</tr>
+				<!-- CONTENT HERE -->
+			</tbody>
+		</table>
+		<table id="main_table" class="p-5 w-full border-collapse">
+			<tbody>
+				<tr class="h-7 bg-normal-red">
+					<td colspan="9"></td>
+				</tr>
+				<tr></tr>
+				<tr class="h-5 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-l-4 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="border-t-4 border-yellow-500 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-t-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-5 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-5 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5"></td>
+					<td></td>
+					<td class="w-5"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-b-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-10 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-r-4 border-yellow-500 border-l-4 border-yellow-500"></td>
+					<td class="w-5"></td>
+					<td class="w-5"></td>
+					<td class="text-center">
+						<table class="w-full">
+							<tbody>
+                                <tr>
+                                    <td colspan="3">
+                                        <div>
+                                            <div class="mb-4">
+                                                <img src="images/dragon-small.png" class="float-left h-44" alt="Golden Dragon"> 
+                                                <img src="images/dragon-small-flipped.png" class="float-right h-44" alt="Golden Dragon"> 
+                                                <p class="text-4xl font-serif font-bold text-yellow-500">Chinees Indische Specialiteiten</p>
+                                                <p class="text-5xl font-serif font-bold text-yellow-500">De Gouden Draak</p>
+                                            </div>
+                                            <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
+                                                <div class="flex px-1 py-2 border border-gray-500">
+                                                    <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+                                                        Menukaart
+                                                    </a>
+                                                    <a href="{{ route('news') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded mx-3">
+                                                        Nieuws
+                                                    </a>
+                                                    <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+                                                        Contact
+                                                    </a>
+													@if (Auth::check())
+                                                    <a href="{{ route('kassa') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
+                                                        Kassa
+                                                    </a>
+													@endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-20 px-20">
+                                            @yield('content')
+                                        </div>
+                                    </td>
+                                </tr>
+							</tbody>
+						</table>
+						<div class="text-center font-serif"><a href="{{ route('contact') }}" class="text-yellow-500">Naar Contact</a></div>
+					</td>
+					<td class="w-5"></td>
+					<td class="w-5"></td>
+					<td class="w-5 border-r-4 border-yellow-500 border-l-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-5 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-r-4 border-yellow-500 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5"></td>
+					<td></td>
+					<td class="w-5"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-t-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-5 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-l-4 border-t-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-t-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-5 bg-normal-red">
+					<td class="w-7"></td>
+					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-yellow-500"></td>
+					<td class="border-t-4 border-yellow-500 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-yellow-500"></td>
+					<td class="w-5 border-l-4 border-b-4 border-yellow-500"></td>
+					<td class="w-5 border-r-4 border-b-4 border-yellow-500"></td>
+					<td class="w-7"></td>
+				</tr>
+				<tr class="h-7 bg-normal-red">
+					<td colspan="9"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
 </html>
