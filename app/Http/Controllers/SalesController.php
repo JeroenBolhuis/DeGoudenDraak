@@ -15,9 +15,6 @@ class SalesController extends Controller
         $startDate = '2019-01-01'; // Example start date
         $endDate = '2024-01-31'; // Example end date
     
-        $sales = DB::table('sales')->select('id')->get();
-        dd($sales);
-        \Log::info('Sales Query: ' . json_encode(\DB::getQueryLog()));
 
         // Query the revenue based on the hardcoded dates
         $revenue = DB::table('dish_has_sales')
@@ -27,7 +24,7 @@ class SalesController extends Controller
             ->sum('dish.price');
     
         // Pass revenue to the view
-        return view('admin.sales', ['revenue' => $revenue,'sales' => $sales]);
+        return view('admin.sales', ['revenue' => $revenue]);
     }
     public function calculateRevenue(Request $request)
     {

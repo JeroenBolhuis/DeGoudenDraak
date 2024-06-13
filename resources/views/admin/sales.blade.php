@@ -9,7 +9,4 @@
     </div>
     hi
     {{$revenue}}
-    @foreach ($sales as $s)
-        {{$s}}
-    @endforeach
 @endsection
