@@ -5,9 +5,7 @@
 </script>
 
 <template>
-    {{ count }}
-
     <button @click="count++">
-        Add
+        Count is: {{ count }}
     </button>
 </template>
