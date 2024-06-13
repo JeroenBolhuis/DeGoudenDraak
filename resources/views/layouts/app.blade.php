@@ -8,6 +8,7 @@
 
         @vite(['resources/js/app.js'])
         @vite(['resources/css/app.css'])
+		
     </head>
 	<body class="px-4 py-2 bg-darker-red">
 		<table id="main_table" class="p-5 w-full border-collapse">

@@ -8,7 +8,7 @@
 
         @vite(['resources/js/app.js'])
         @vite(['resources/css/app.css'])
-		@stack('scripts')
+		
     </head>
 	<body class="px-4 py-2 bg-zinc-300">
 		<table id="main_table" class="p-5 w-full border-collapse">

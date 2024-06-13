@@ -19,11 +19,9 @@ Route::post('/revenue', function (Request $request) {
         ->whereBetween('sales.date', [$startDate, $endDate])
         ->sum('dish.price');
 
-    \Log::info('Calculated Revenue: ' . $revenue); // Log the revenue value
-
-
     return response()->json(['revenue' => $revenue]);
 });
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
