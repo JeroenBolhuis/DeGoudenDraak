@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::middleware('auth')->group(function () {
+    Route::get('/kassa', function () {
+        return view('admin.kassa');
+    })->name('admin.kassa');
+    Route::get('/kassamenu', function () {
+        return view('admin.menu');
+    })->name('admin.menu');
+    Route::get('/sales', function () {
+        return view('admin.sales');
+    })->name('admin.sales');
+    Route::get('/sales', [SalesController::class, 'index'])->name('admin.sales');
+    Route::post('/sales', [SalesController::class, 'calculateRevenue']);
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 Route::get('/', function () {
     return view('app.index');
@@ -37,20 +56,5 @@ Route::get('/contact', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/kassa', function () {
-        return view('admin.kassa');
-    })->name('kassa');
-    Route::get('/kassamenu', function () {
-        return view('admin.menu');
-    })->name('kassamenu');
-    Route::get('/sales', function () {
-        return view('admin.sales');
-    })->name('sales');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';

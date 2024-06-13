@@ -98,7 +98,7 @@
                                                         Contact
                                                     </a>
 													@if (Auth::check())
-                                                    <a href="{{ route('kassa') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
+                                                    <a href="{{ route('admin.kassa') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
                                                         Kassa
                                                     </a>
 													@endif
