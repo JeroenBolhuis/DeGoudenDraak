@@ -19,7 +19,7 @@
 					<td>
 						<a href="paginas/aanbiedingen.html" class="text-yellow-500 font-bold no-underline">
 							<marquee behavior="scroll" direction="left">
-								Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
+								Welkom bij De Gouden Draak @if (Auth::check()) {{ Auth::user()->name }} @endif. Klik op deze tekst om de aanbiedingen van deze week te zien!
 							</marquee>
 						</a>
 					</td>
@@ -97,6 +97,11 @@
                                                     <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
                                                         Contact
                                                     </a>
+													@if (Auth::check())
+                                                    <a href="{{ route('kassa') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
+                                                        Kassa
+                                                    </a>
+													@endif
                                                 </div>
                                             </div>
                                         </div>
