@@ -18,14 +18,15 @@
 						<div>
 							<div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
 								<div class="flex px-1 pt-2 pb-4">
-									<a href="{{ route('admin.sales') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
-										Verkoop Overzicht
+									<a href="{{ route('restaurant.index') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
+										Restaurant
 									</a>
-									@if (Auth::check())
+									<a href="{{ route('restaurant.index') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center mx-3">
+										Tafels
+									</a>
 									<a href="{{ route('backend') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center ml-3">
 										Exit
 									</a>
-									@endif
 								</div>
 							</div>
 						</div>
