@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Log;
+use App\Models\Dish;
 use App\Models\Sales;
 use App\Models\DishHasSale;
-use App\Models\Dish;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class KassaController extends Controller
 {
@@ -37,7 +39,7 @@ class KassaController extends Controller
     }
     public function store(Request $request)
     {
-        \Log::info('Request Payload: ', $request->all());
+        Log::info('Request Payload: ', $request->all());
         try {
             // Create a new sale record
             $sale = Sales::create(['date' => now()]);
