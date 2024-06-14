@@ -11,6 +11,8 @@ class Sales extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['date'];
+
     public function dish() {
         return $this->belongsToMany(Dish::class, 'dish_has_sales')->withPivot('dish_id', 'sales_id', 'comment');
     }
