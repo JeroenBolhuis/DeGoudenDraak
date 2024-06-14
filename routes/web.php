@@ -33,7 +33,6 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     Route::prefix('kassa')->name('kassa.')->group(function () {
         Route::get('/', [KassaController::class, 'index'])->name('index');
         Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
-        Route::get('/menu', [KassaController::class, 'showMenu'])->name('menu');
     });
 
     // Admin Routes
