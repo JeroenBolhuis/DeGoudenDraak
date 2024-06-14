@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -73,5 +76,14 @@ Route::get('/contact', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::post('/setLocale', function (\Illuminate\Http\Request $request) {
+    $locale = $request->input('locale');
+    if (in_array($locale, ['en', 'nl'])) {
+        Session::put('locale', $locale);
+    }
+    return back();
+})->name('setLocale');
+
 
 require __DIR__.'/auth.php';

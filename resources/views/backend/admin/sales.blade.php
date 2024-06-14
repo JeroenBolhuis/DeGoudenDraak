@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.backend.admin')
 
 @section('content')
     <div class="text-center bg-gray-100 border-2 border-black py-8 mb-1">
