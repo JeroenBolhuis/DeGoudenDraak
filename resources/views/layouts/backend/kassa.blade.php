@@ -8,6 +8,7 @@
 
         @vite(['resources/js/app.js'])
         @vite(['resources/css/app.css'])
+        @vite(['resources/js/kassa.js'])
 		
     </head>
 	<body class="px-4 py-2 bg-zinc-300">

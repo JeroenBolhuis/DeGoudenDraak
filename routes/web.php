@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KassaController;
 use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+
 
 
 /*
@@ -27,12 +30,9 @@ Route::middleware('auth')->prefix('backend')->group(function () {
 
     // Kassa Routes
     Route::prefix('kassa')->name('kassa.')->group(function () {
-        Route::get('/', function () {
-            return view('backend.kassa.index');
-        })->name('index');
-        Route::get('/menu', function () {
-            return view('backend.kassa.menu');
-        })->name('menu');
+        Route::get('/', [KassaController::class, 'index'])->name('index');
+        Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
+        Route::get('/menu', [KassaController::class, 'showMenu'])->name('menu');
     });
 
     // Admin Routes

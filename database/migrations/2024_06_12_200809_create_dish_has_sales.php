@@ -19,6 +19,7 @@ return new class extends Migration
         
             $table->foreign('dish_id')->references('id')->on('dish')->onDelete('cascade');
             $table->foreign('sales_id')->references('id')->on('sales')->onDelete('cascade');
+            $table->timestamps(null);
         });
     }
 

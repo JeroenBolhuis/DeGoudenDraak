@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     use HasFactory;
-
+    protected $table = 'dish';
     public function dishType() {
         return $this->belongsTo(DishType::class);
     }
