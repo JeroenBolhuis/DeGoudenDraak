@@ -1,1 +1,1 @@
-@extends('layouts.restaurant')
+@extends('layouts.backend.restaurant')

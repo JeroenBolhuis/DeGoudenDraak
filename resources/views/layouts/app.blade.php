@@ -20,7 +20,7 @@
 					<td>
 						<a href="paginas/aanbiedingen.html" class="text-yellow-500 font-bold no-underline">
 							<marquee behavior="scroll" direction="left">
-								Welkom bij De Gouden Draak @if (Auth::check()) {{ Auth::user()->name }} @endif. Klik op deze tekst om de aanbiedingen van deze week te zien!
+								{{__('Welcome to')}} {{__('The Golden Dragon')}} @if (Auth::check()) {{ Auth::user()->name }} @endif. {{__('Click this text to see the discounts of this week!')}}
 							</marquee>
 						</a>
 					</td>
@@ -84,23 +84,28 @@
                                             <div class="mb-4">
                                                 <img src="images/dragon-small.png" class="float-left h-44" alt="Golden Dragon"> 
                                                 <img src="images/dragon-small-flipped.png" class="float-right h-44" alt="Golden Dragon"> 
-                                                <p class="text-4xl font-serif font-bold text-yellow-500">Chinees Indische Specialiteiten</p>
-                                                <p class="text-5xl font-serif font-bold text-yellow-500">De Gouden Draak</p>
+                                                <p class="text-4xl font-serif font-bold text-yellow-500">{{__('Chinese Indian Specialties')}}</p>
+                                                <p class="text-5xl font-serif font-bold text-yellow-500">{{__('The Golden Dragon')}}</p>
                                             </div>
+											<form method="post" action="{{ route('setLocale') }}">
+												@csrf
+												<button type="submit" name="locale" value="en">English</button>
+												<button type="submit" name="locale" value="nl">Nederlands</button>
+											</form>
                                             <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
                                                 <div class="flex px-1 py-2 border border-gray-500">
                                                     <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
-                                                        Menukaart
+														{{__('Menu')}}
                                                     </a>
                                                     <a href="{{ route('news') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded mx-3">
-                                                        Nieuws
+														{{__('News')}}
                                                     </a>
                                                     <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
-                                                        Contact
+														{{__('Contact')}}
                                                     </a>
 													@if (Auth::check())
                                                     <a href="{{ route('backend') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
-                                                        Backend
+														{{__('Backend')}}
                                                     </a>
 													@endif
                                                 </div>
@@ -113,7 +118,7 @@
                                 </tr>
 							</tbody>
 						</table>
-						<div class="text-center font-serif"><a href="{{ route('contact') }}" class="text-yellow-500">Naar Contact</a></div>
+						<div class="text-center font-serif"><a href="{{ route('contact') }}" class="text-yellow-500">{{__('To')}} Contact</a></div>
 					</td>
 					<td class="w-5"></td>
 					<td class="w-5"></td>
