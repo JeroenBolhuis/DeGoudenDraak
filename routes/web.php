@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\DishController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LocalizationController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\DishController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LocalizationController;
 
 
 /*
@@ -40,7 +41,7 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
         Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
-        Route::resource('/dish', DishController::class);
+        Route::resource('dish', DishController::class);
     });
 
     // Restaurant Routes
