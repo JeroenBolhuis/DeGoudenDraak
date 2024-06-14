@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\DishType;
 use Illuminate\Http\Request;
 
 class DishController extends Controller
@@ -21,7 +22,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        return view('dish.create');
+        $dishtypes = DishType::all();
+        return view('dish.create', ['dishtypes' => $dishtypes]);
     }
 
     /**
@@ -34,7 +36,7 @@ class DishController extends Controller
             'addition' => 'nullable|alpha',
             'name' => 'required|string',
             'price' => 'required|numeric',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'dishtype' => 'required|exists:dishtype,type'
         ]);
 
@@ -69,8 +71,9 @@ class DishController extends Controller
      */
     public function edit(string $id)
     {
+        $dishtypes = DishType::all();
         $dish = Dish::find($id);
-        return view('dish.edit', ['dish' => $dish]);
+        return view('dish.edit', ['dish' => $dish, 'dishtypes' => $dishtypes]);
     }
 
     /**
@@ -78,7 +81,29 @@ class DishController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([ 
+            'dishnumber' => 'nullable|numeric',
+            'addition' => 'nullable|alpha',
+            'name' => 'required|string',
+            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+            'dishtype' => 'required|exists:dishtype,type'
+        ]);
+
+        $dish = Dish::find($id);
+        if(!empty($dish)) {
+            $dish->dishnumber = $validatedData['dishnumber'];
+            $dish->addition = $validatedData['addition'];
+            $dish->name = $validatedData['name'];
+            $dish->price = $validatedData['price'];
+            $dish->description = $validatedData['description'];
+            $dish->dishtype = $validatedData['dishtype'];
+            $dish->save();
+
+            return redirect()->route('dish.index');
+        }
+
+        return redirect()->back();
     }
 
     /**

@@ -11,9 +11,10 @@ class DishType extends Model
 
     protected $primaryKey = 'type';
     public $incrementing = false;
-
     protected $keyType = 'string';
-    protected $timestamps = false;
+    
+    protected $table = "dishtype";
+    public $timestamps = false;
 
     public function dish() {
         return $this->hasMany(Dish::class);

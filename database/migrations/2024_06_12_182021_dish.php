@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('addition')->nullable();
             $table->string('name');
             $table->decimal('price', 8, 2);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('dishtype');
             $table->timestamps();
 
