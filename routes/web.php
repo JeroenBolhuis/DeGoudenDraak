@@ -48,6 +48,9 @@ Route::middleware('auth')->prefix('backend')->group(function () {
         Route::get('/', function () {
             return view('backend.restaurant.index');
         })->name('index');
+        Route::get('/tables', function () {
+            return view('backend.restaurant.index');
+        })->name('tables');
     });
 
     // Profile Routes

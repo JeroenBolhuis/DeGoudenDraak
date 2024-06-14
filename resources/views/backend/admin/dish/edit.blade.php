@@ -1,7 +1,7 @@
-@extends('layouts.admin2')
+@extends('layouts.backend.admin')
 
 @section('content')
-<form action="{{ route('dish.update', $dish) }}" method="POST" class="max-w-sm mx-auto">
+<form action="{{ route('admin.dish.update', $dish) }}" method="POST" class="max-w-sm mx-auto">
     @csrf
     @method('PUT')
     <div class="mb-5">

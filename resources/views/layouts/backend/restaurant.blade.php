@@ -1,132 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>De gouden draak</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        @vite(['resources/js/app.js'])
-        @vite(['resources/css/app.css'])
-		
-    </head>
-	<body class="px-4 py-2 bg-zinc-300">
-		<table id="main_table" class="p-5 w-full border-collapse">
-			<tbody>
-				<tr class="h-7 bg-white">
-					<td colspan="9">
-						<div>
-							<div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
-								<div class="flex px-1 pt-2 pb-4">
-									<a href="{{ route('restaurant.index') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
-										Restaurant
-									</a>
-									<a href="{{ route('restaurant.index') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center mx-3">
-										Tafels
-									</a>
-									<a href="{{ route('backend') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center ml-3">
-										Exit
-									</a>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-				<tr></tr>
-				<tr class="h-5 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-t-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-t-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
-					<td class="border-t-4 border-blue-800 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-l-4 border-t-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-t-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-5 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-5 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5"></td>
-					<td></td>
-					<td class="w-5"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-b-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-10 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-r-4 border-blue-800 border-l-4 border-blue-800"></td>
-					<td class="w-5"></td>
-					<td class="w-5"></td>
-					<td class="text-center">
-						<table class="w-full">
-							<tbody>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="px-20">
-                                            @yield('content')
-                                        </div>
-                                    </td>
-                                </tr>
-							</tbody>
-						</table>
-					</td>
-					<td class="w-5"></td>
-					<td class="w-5"></td>
-					<td class="w-5 border-r-4 border-blue-800 border-l-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-5 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-r-4 border-blue-800 border-t-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5"></td>
-					<td></td>
-					<td class="w-5"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-t-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-5 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-t-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-t-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-5 bg-white">
-					<td class="w-7"></td>
-					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-blue-800"></td>
-					<td class="border-t-4 border-blue-800 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-l-4 border-blue-800"></td>
-					<td class="w-5 border-l-4 border-b-4 border-blue-800"></td>
-					<td class="w-5 border-r-4 border-b-4 border-blue-800"></td>
-					<td class="w-7"></td>
-				</tr>
-				<tr class="h-7 bg-white">
-					<td colspan="9"></td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
+    <title>De gouden draak</title>
 
-</html>
+    @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css'])
+    @stack('scripts')
+</head>
+<body class="bg-gray-200 ">
+    <div class="min-h-screen bg-gray-200 dark:bg-gray-800">
+        <header>
+            <nav class="bg-white border-gray-200 dark:bg-gray-900">
+                <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">De gouden draak</span>
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="{{ route('restaurant.index') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Restaurant</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('restaurant.tables') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tafels</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('backend') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Backend</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="p-4 xl-ml-64">
+            @yield('content')
+        </main>
+
+    </div>
+</body>
