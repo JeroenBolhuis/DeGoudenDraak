@@ -8,7 +8,7 @@
 
         @vite(['resources/js/app.js'])
         @vite(['resources/css/app.css'])
-		@stack('scripts')
+		
     </head>
 	<body class="px-4 py-2 bg-zinc-300">
 		<table id="main_table" class="p-5 w-full border-collapse">
@@ -18,20 +18,15 @@
 						<div>
 							<div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
 								<div class="flex px-1 pt-2 pb-4">
-									<a href="{{ route('admin.kassa') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
+									<a href="{{ route('kassa.index') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
 										Kassa
 									</a>
-									<a href="{{ route('admin.menu') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center mx-3">
+									<a href="{{ route('kassa.menu') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center mx-3">
 										Gerechten
 									</a>
-									<a href="{{ route('admin.sales') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center">
-										Verkoop Overzicht
+									<a href="{{ route('backend') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center ml-3">
+										Exit
 									</a>
-									@if (Auth::check())
-									<a href="{{ route('home') }}" class="flex-grow btn text-white bg-blue-300 py-1 border border-blue-900 rounded-lg text-center ml-3">
-										Website
-									</a>
-									@endif
 								</div>
 							</div>
 						</div>

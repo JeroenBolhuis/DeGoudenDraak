@@ -2,62 +2,90 @@
 
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SalesController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register web routes for your weblication. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/kassa', function () {
-        return view('admin.kassa');
-    })->name('admin.kassa');
-    Route::get('/kassamenu', function () {
-        return view('admin.menu');
-    })->name('admin.menu');
-    Route::get('/sales', function () {
-        return view('admin.sales');
-    })->name('admin.sales');
-    Route::get('/sales', [SalesController::class, 'index'])->name('admin.sales');
-    Route::post('/sales', [SalesController::class, 'calculateRevenue']);
+Route::middleware('auth')->prefix('backend')->group(function () {
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    Route::resource('dish', DishController::class);
+    // Backend Index Route
+    Route::get('/', function () {
+        return view('backend.index');
+    })->name('backend');
+
+    // Kassa Routes
+    Route::prefix('kassa')->name('kassa.')->group(function () {
+        Route::get('/', function () {
+            return view('backend.kassa.index');
+        })->name('index');
+        Route::get('/menu', function () {
+            return view('backend.kassa.menu');
+        })->name('menu');
+    });
+
+    // Admin Routes
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
+        Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
+        Route::resource('/dish', DishController::class);
+    });
+
+    // Restaurant Routes
+    Route::prefix('restaurant')->name('restaurant.')->group(function () {
+        Route::get('/', function () {
+            return view('backend.restaurant.index');
+        })->name('index');
+    });
+
+    // Profile Routes
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    });
 });
 
+//website routes
 Route::get('/', function () {
-    return view('app.index');
+    return view('web.index');
 });
-
 Route::get('/home', function () {
-    return view('app.index');
+    return view('web.index');
 })->name('home');
-
 Route::get('/news', function () {
-    return view('app.news');
+    return view('web.news');
 })->name('news');
-
 Route::get('/menu', function () {
-    return view('app.menu');
+    return view('web.menu');
 })->name('menu');
-
 Route::get('/contact', function () {
-    return view('app.contact');
+    return view('web.contact');
 })->name('contact');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::post('/setLocale', function (\Illuminate\Http\Request $request) {
+    $locale = $request->input('locale');
+    if (in_array($locale, ['en', 'nl'])) {
+        Session::put('locale', $locale);
+    }
+    return back();
+})->name('setLocale');
+
 
 require __DIR__.'/auth.php';
