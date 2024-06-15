@@ -43,6 +43,9 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
         Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
+
+        Route::get('/summaries/{file}', [AdminController::class, 'download']);
+
         Route::resource('dish', DishController::class);
       
         Route::resource('table', TableController::class);
