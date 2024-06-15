@@ -21,7 +21,7 @@ class RestaurantController extends Controller
         $table = Table::where('number', $validatedData['id'])->firstOrFail();
         $table->update(['need_help' => true]);
     
-        return redirect()->route('restaurant')->with('success', 'Hulp succesvol aangevraagd.');
+        return redirect()->route('restaurant')->with('success', __('Help succesfully called'));
     }
     
 }
