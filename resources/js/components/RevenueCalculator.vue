@@ -1,7 +1,7 @@
 
 <template>
     <div class="container">
-        <h1 class="text-6xl mb-4">Bereken omzet</h1>
+        <h1 class="text-5xl mb-4">Bereken omzet</h1>
         <form @submit.prevent="calculateRevenue">
             <div class="form-group my-4">
                 <label for="start_date">Start datum </label>

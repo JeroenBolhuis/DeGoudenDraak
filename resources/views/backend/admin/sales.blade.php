@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="border-2 border-black py-8 my-8 p-4 w-1/4 h-3/4 overflow-y-scroll">
-            <h2 class="font-bold text-xl mb-4">Daily Sales Summaries</h2>
+            <h2 class="font-bold text-xl mb-4">Dagelijke verkoop overzichten</h2>
             <ul>
                 @php
                     // Sort files by date
