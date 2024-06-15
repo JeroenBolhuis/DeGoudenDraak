@@ -10,9 +10,11 @@ class Table extends Model
     use HasFactory;
 
     public $timestamps = false;
+    
+    protected $table = 'table';
+    protected $fillable = ['number', 'capacity', 'need_help'];
 
-    public function booking() {
-        return $this->hasOne(Booking::class);
+    public function bookings() {
+        return $this->hasMany(Booking::class, 'table_idtable');
     }
-
 }

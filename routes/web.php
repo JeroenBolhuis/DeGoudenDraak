@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\KassaController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocalizationController;
 
@@ -34,7 +36,6 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     Route::prefix('kassa')->name('kassa.')->group(function () {
         Route::get('/', [KassaController::class, 'index'])->name('index');
         Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
-        Route::get('/menu', [KassaController::class, 'showMenu'])->name('menu');
     });
 
     // Admin Routes
@@ -42,14 +43,21 @@ Route::middleware('auth')->prefix('backend')->group(function () {
         Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
         Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
         Route::resource('dish', DishController::class);
+      
         Route::resource('discount', DiscountController::class);
+      
+        Route::resource('table', TableController::class);
+        Route::post('table/{table}/booking', [TableController::class, 'addBooking'])->name('table.addBooking');
+        Route::post('table/{table}/resolve', [TableController::class, 'resolve'])->name('table.resolve');
+        Route::delete('booking/{booking}', [TableController::class, 'destroyBooking'])->name('booking.destroy');
+        Route::post('booking/{booking}/customer', [TableController::class, 'addCustomer'])->name('booking.addCustomer');
+        Route::delete('customer/{customer}', [TableController::class, 'destroyCustomer'])->name('customer.destroy');
     });
 
     // Restaurant Routes
     Route::prefix('restaurant')->name('restaurant.')->group(function () {
-        Route::get('/', function () {
-            return view('backend.restaurant.index');
-        })->name('index');
+        Route::get('/', [RestaurantController::class, 'index'])->name('index');
+
     });
 
     // Profile Routes
@@ -73,6 +81,10 @@ Route::get('/news', function () {
 Route::get('/menu', function () {
     return view('web.menu');
 })->name('menu');
+Route::get('/restaurant', function () {
+    return view('web.restaurant');
+})->name('restaurant');
+Route::post('/restaurant/callhelp', [RestaurantController::class, 'callHelp'])->name('restaurant.callhelp');
 Route::get('/contact', function () {
     return view('web.contact');
 })->name('contact');

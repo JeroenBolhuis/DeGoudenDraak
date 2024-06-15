@@ -12,12 +12,6 @@ use App\Http\Controllers\Controller;
 
 class KassaController extends Controller
 {
-    // public function index()
-    // {
-    //     $dishes = DB::table('dish')->get();
-    //     return view('backend.kassa.index', ['dishes' => $dishes]);
-    // }
-    // Controller methode
     public function index(Request $request)
     {
         $query = $request->input('query');
@@ -32,10 +26,6 @@ class KassaController extends Controller
         $dishes = $dishes->get();
 
         return view('backend.kassa.index', compact('dishes'));
-    }
-    public function showMenu()
-    {
-        return view('backend.kassa.menu');
     }
     public function store(Request $request)
     {

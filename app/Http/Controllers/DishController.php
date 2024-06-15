@@ -14,7 +14,7 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all();
-        return view('dish.index', ['dishes' => $dishes]);
+        return view('backend.admin.dish.index', ['dishes' => $dishes]);
     }
 
     /**
@@ -23,7 +23,7 @@ class DishController extends Controller
     public function create()
     {
         $dishtypes = DishType::all();
-        return view('dish.create', ['dishtypes' => $dishtypes]);
+        return view('backend.admin.dish.create', ['dishtypes' => $dishtypes]);
     }
 
     /**
@@ -49,7 +49,7 @@ class DishController extends Controller
         $dish->dishtype = $validatedData['dishtype'];
         $dish->save();
 
-        return redirect()->route('dish.index')->with('dishes', $dish->toArray());
+        return redirect()->route('admin.dish.index')->with('dishes', $dish->toArray());
     }
 
     /**
@@ -63,7 +63,7 @@ class DishController extends Controller
             return redirect()->route(404);
         }
 
-        return view('dish.show', ['dish' => $dish]);
+        return view('backend.admin.dish.show', ['dish' => $dish]);
     }
 
     /**
@@ -73,7 +73,7 @@ class DishController extends Controller
     {
         $dishtypes = DishType::all();
         $dish = Dish::find($id);
-        return view('dish.edit', ['dish' => $dish, 'dishtypes' => $dishtypes]);
+        return view('backend.admin.dish.edit', ['dish' => $dish, 'dishtypes' => $dishtypes]);
     }
 
     /**
@@ -100,7 +100,7 @@ class DishController extends Controller
             $dish->dishtype = $validatedData['dishtype'];
             $dish->save();
 
-            return redirect()->route('dish.index');
+            return redirect()->route('admin.dish.index');
         }
 
         return redirect()->back();
@@ -114,6 +114,6 @@ class DishController extends Controller
         $dish = Dish::find($id);
         $dish->delete();
 
-        return redirect()->route('dish.index');
+        return redirect()->route('admin.dish.index');
     }
 }

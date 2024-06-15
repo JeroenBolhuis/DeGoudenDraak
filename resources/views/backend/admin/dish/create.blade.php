@@ -1,8 +1,8 @@
-@extends('layouts.admin2')
+@extends('layouts.backend.admin')
 
 @section('content')
 
-<form action="{{ route('dish.store') }}" method="POST" class="max-w-sm mx-auto">
+<form action="{{ route('admin.dish.store') }}" method="POST" class="max-w-sm mx-auto">
     @csrf
     <div class="mb-5">
         <label for="dishnumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gerechtnummer</label>
