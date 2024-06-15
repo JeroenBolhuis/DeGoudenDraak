@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -10,7 +11,12 @@ class AdminController extends Controller
 {    
     public function showSales()
     {
-        return view('backend.admin.sales');
+        $files = File::files(public_path('storage/summaries'));
+        return view('backend.admin.sales', compact('files'));
+    }
+    public function download($file)
+    {
+        return response()->download(public_path('storage/summaries/' . $file));
     }
     public function calculateRevenue(Request $request)
     {

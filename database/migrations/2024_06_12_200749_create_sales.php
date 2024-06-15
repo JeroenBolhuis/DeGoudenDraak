@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->foreignId('table_idtable')->nullable()->constrained('table')->onDelete('cascade');
-            // $table->timestamps();
         });
     }
 
