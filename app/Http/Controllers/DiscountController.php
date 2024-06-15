@@ -14,7 +14,8 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        $discounts = Discount::all();
+        return view('discount.index', ['discounts' => $discounts]);
     }
 
     /**
@@ -31,22 +32,24 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $validated = $request->validate([
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'start_date' => 'required|date|after:now',
+            'end_date' => 'required|date|after:start_date',
             'price' => 'required|numeric',
             'dish' => 'required|exists:dish,id' 
         ]);
+ 
 
         $discount = new Discount();
 
         $discount->start_date = $validated['start_date'];
         $discount->end_date = $validated['end_date'];
         $discount->price = $validated['price'];
-        $discount->dish = $validated['dish'];
+        $discount->dish_id = $validated['dish'];
         $discount->save();
 
-        return redirect()->route('discount.index');
+        return redirect()->route('admin.discount.index');
 
     }
 

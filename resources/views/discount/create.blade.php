@@ -1,19 +1,27 @@
 @extends('layouts.admin2')
 
 @section('content')
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{ route('admin.discount.store') }}" method="POST" class="max-w-sm mx-auto">
     @csrf
     <div class="mb-5">
         <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Startdatum</label>
-        <input type="text" name="start_date" id="start_date" value="{{ old('start_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+        <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         @error('start_date')
             <p class="text-red-500"> {{ $message }} </p>
         @enderror
     </div>
     <div class="mb-5">
         <label for="end_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Einddatum</label>
-        <input type="text" name="end_date" id="end_date" value="{{ old('end_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+        <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         @error('end_date')
             <p class="text-red-500"> {{ $message }} </p>
         @enderror
@@ -26,8 +34,8 @@
         @enderror
     </div>
     <div class="mb-5">
-        <label for="dishtype" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gerechttype</label>
-        <select name="dishtype" id="dishtype" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <label for="dish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gerechttype</label>
+        <select name="dish" id="dish" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             @foreach ($dishes as $dish)
                 <option value="{{ $dish->id }}" @if (old('dish') == $dish->id) selected @endif>
                     {{ $dish->name }}
