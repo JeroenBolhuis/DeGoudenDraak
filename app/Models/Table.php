@@ -10,6 +10,8 @@ class Table extends Model
     use HasFactory;
 
     public $timestamps = false;
+    
+    protected $table = 'table';
 
     public function booking() {
         return $this->hasOne(Booking::class);
