@@ -9,12 +9,16 @@ class Booking extends Model
 {
     use HasFactory;
 
-    
-    public function table() {
-        return $this->belongsTo(Table::class);
+    protected $table = 'booking'; // specify custom table name
+    protected $fillable = ['deluxe_menu', 'table_idtable', 'datetime'];
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class, 'booking_id');
     }
 
-    public function customer() {
-        return $this->hasMany(Customer::class);
+    public function table()
+    {
+        return $this->belongsTo(Table::class, 'table_idtable');
     }
 }

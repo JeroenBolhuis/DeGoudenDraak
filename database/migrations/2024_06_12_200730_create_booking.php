@@ -16,7 +16,6 @@ return new class extends Migration
             $table->boolean('deluxe_menu');
             $table->foreignId('table_idtable')->constrained('table')->onDelete('cascade');
             $table->dateTime('datetime');
-            $table->boolean('need_help');
             $table->timestamps();
         });
     }

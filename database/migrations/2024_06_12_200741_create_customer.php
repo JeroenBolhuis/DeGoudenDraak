@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->id();
-            $table->integer('age');
-            $table->unsignedBigInteger('booking_table_idtable');
-
-            $table->foreign('booking_table_idtable')->references('table_idtable')->on('booking')->onDelete('cascade');
+            $table->string('name');  
+            $table->integer('age');            
+            $table->foreignId('booking_id')->constrained('booking')->onDelete('cascade');
         });
     }
 

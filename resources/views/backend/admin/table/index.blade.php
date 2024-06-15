@@ -4,7 +4,7 @@
 <div class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg mb-4 text-gray-900 px-8 pt-8 pb-8 md-4">
     <div class="flex justify-between items-center">
         <h1 class="text-3xl font-bold">
-            {{__('Tafles')}}
+            {{__('Tafels')}}
         </h1>
         <div class="flex ">
             <a href="{{ route('admin.table.create') }}" class="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="relative overflow-x-auto">
+<div class="relative overflow-x-auto h-[calc(100vh-15rem)]">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -23,6 +23,9 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     capaciteit
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    hulp nodig
                 </th>
                 <th scope="col" class="px-6 py-3">
                 </th>
@@ -36,6 +39,9 @@
                 </th>
                 <td class="px-6 py-4">
                     {{ $table->capacity }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $table->need_help ? 'Ja' : 'Nee' }}
                 </td>
                 <td class="px-6 py-4 flex justify-end items-center">
                     <a href="{{ route('admin.table.edit', $table->id) }}" class="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
