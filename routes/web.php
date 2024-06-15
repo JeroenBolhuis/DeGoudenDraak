@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\WebController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiscountController;
@@ -36,6 +37,7 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     Route::prefix('kassa')->name('kassa.')->group(function () {
         Route::get('/', [KassaController::class, 'index'])->name('index');
         Route::resource('discount', DiscountController::class);
+        
         Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
     });
 
@@ -83,6 +85,7 @@ Route::get('/news', function () {
 Route::get('/menu', function () {
     return view('web.menu');
 })->name('menu');
+Route::get('discounts', [WebController::class, 'showDiscounts'])->name('discounts');
 Route::get('/restaurant', function () {
     return view('web.restaurant');
 })->name('restaurant');

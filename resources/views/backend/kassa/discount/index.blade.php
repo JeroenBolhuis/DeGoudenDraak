@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($discounts as $discount )
+        @foreach ($discounts->where('end_date', '>=', now()) as $discount)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ $discount->start_date }}
@@ -46,8 +46,63 @@
                 <td class="px-6 py-4">
                     {{ $discount->price }}
                 </td>
+                <td class="px-6 py-4 w-1/5">
+                    {{!! $discount->dish->name !!}}
+                </td>
                 <td class="px-6 py-4">
-                    {{ $discount->dish_id }}
+                    <form action="{{ route('kassa.discount.destroy', $discount->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">Verwijderen</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <h1 class="text-3xl font-bold text-white px-6 py-4 dark:bg-gray-900">
+        {{__('Past')}}
+    </h1>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Startdatum
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Einddatum
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Prijs
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Gerecht
+                </th>
+                <th scope="col" class="px-6 py-3">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ($discounts->where('end_date', '<', now()) as $discount)
+            <tr class="bg-white border-b dark:bg-gray-950 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ $discount->start_date }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ $discount->end_date }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $discount->price }}
+                </td>
+                <td class="px-6 py-4 w-1/5">
+                    {{!! $discount->dish->name !!}}
+                </td>
+                <td class="px-6 py-4">
+                    <form action="{{ route('kassa.discount.destroy', $discount->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">Verwijderen</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

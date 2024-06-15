@@ -18,7 +18,7 @@
                         @include('partials.logo')
 					</td>
 					<td>
-						<a href="paginas/aanbiedingen.html" class="text-yellow-500 font-bold no-underline">
+						<a href="{{ route('discounts') }}" class="text-yellow-500 font-bold no-underline">
 							<marquee behavior="scroll" direction="left">
 								{{__('Welcome to')}} {{__('The Golden Dragon')}} @if (Auth::check()) {{ Auth::user()->name }} @endif. {{__('Click this text to see the discounts of this week!')}}
 							</marquee>
