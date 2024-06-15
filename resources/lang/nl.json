@@ -27,8 +27,9 @@
     "Call help": "Roep hulp",
     "The id field is required.": "Het id veld is verplicht.",
     "The selected id is invalid.": "Het ingevoerde id is ongeldig.",
-    
+
     "For only": "Voor maar",
     "Through": "t/m",
-    "Special discounts": "Speciale aanbiedingen"
+    "Special discounts": "Speciale aanbiedingen",
+    "Discounts": "aanbiedingen"
 }

@@ -92,25 +92,30 @@
 												<button type="submit" name="locale" value="en">English</button>
 												<button type="submit" name="locale" value="nl">Nederlands</button>
 											</form>
-                                            <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
-                                                <div class="flex px-1 py-2 border border-gray-500">
-                                                    <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+                                            <div class="max-w-xl mx-auto border border-gray-500"> <!-- Set maximum width and center the div -->
+                                                <div class="flex px-1 py-2">
+                                                    <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 rounded">
 														{{__('Menu')}}
                                                     </a>
-                                                    <a href="{{ route('restaurant') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 ml-3 rounded">
+                                                    <a href="{{ route('restaurant') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 ml-3 rounded">
 														{{__('Restaurant')}}
                                                     </a>
-                                                    <a href="{{ route('news') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded mx-3">
-														{{__('News')}}
-                                                    </a>
-                                                    <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
-														{{__('Contact')}}
-                                                    </a>
 													@if (Auth::check())
-                                                    <a href="{{ route('backend') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded ml-3">
+													<a href="{{ route('backend') }}" class="flex-grow btn text-white bg-gradient-to-br from-yellow-400 to-green-600 py-1 rounded ml-3"> <!-- Changed gradient color -->
 														{{__('Backend')}}
                                                     </a>
 													@endif
+                                                </div>
+                                                <div class="flex px-1 py-2">
+                                                    <a href="{{ route('discounts') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 rounded">
+														{{__('Discounts')}}
+                                                    </a>
+                                                    <a href="{{ route('news') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 rounded ml-3">
+														{{__('News')}}
+                                                    </a>
+                                                    <a href="{{ route('contact') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 rounded ml-3">
+														{{__('Contact')}}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
