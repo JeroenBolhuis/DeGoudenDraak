@@ -15,7 +15,7 @@ class DiscountController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        return view('discount.index', ['discounts' => $discounts]);
+        return view('backend.kassa.discount.index', ['discounts' => $discounts]);
     }
 
     /**
@@ -24,7 +24,7 @@ class DiscountController extends Controller
     public function create()
     {
         $dishes = Dish::all();
-        return view('discount.create', ['dishes' => $dishes]);
+        return view('backend.kassa.discount.create', ['dishes' => $dishes]);
     }
 
     /**
@@ -49,7 +49,7 @@ class DiscountController extends Controller
         $discount->dish_id = $validated['dish'];
         $discount->save();
 
-        return redirect()->route('admin.discount.index');
+        return redirect()->route('kassa.discount.index');
 
     }
 

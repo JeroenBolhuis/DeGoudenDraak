@@ -35,6 +35,7 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     // Kassa Routes
     Route::prefix('kassa')->name('kassa.')->group(function () {
         Route::get('/', [KassaController::class, 'index'])->name('index');
+        Route::resource('discount', DiscountController::class);
         Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
     });
 
@@ -43,8 +44,6 @@ Route::middleware('auth')->prefix('backend')->group(function () {
         Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
         Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
         Route::resource('dish', DishController::class);
-      
-        Route::resource('discount', DiscountController::class);
       
         Route::resource('table', TableController::class);
         Route::post('table/{table}/booking', [TableController::class, 'addBooking'])->name('table.addBooking');

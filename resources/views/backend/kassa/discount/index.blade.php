@@ -1,4 +1,4 @@
-@extends('layouts.admin2')
+@extends('layouts.backend.kassa')
 
 @section('content')
 <div class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg mb-4 text-gray-900 px-8 pt-8 pb-8 md-4 dark:bg-gray-800 dark:text-white">
@@ -7,7 +7,7 @@
             {{__('Discounts')}}
         </h1>
         <div class="flex ">
-            <a href="{{ route('admin.discount.create') }}" class="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+            <a href="{{ route('kassa.discount.create') }}" class="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                 {{__('Create discount')}}
             </a>
         </div>
@@ -25,7 +25,7 @@
                     Einddatum
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Prijnmn
+                    Prijs
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Gerecht
