@@ -47,7 +47,7 @@
                     {{ $discount->price }}
                 </td>
                 <td class="px-6 py-4 w-1/5">
-                    {{!! $discount->dish->name !!}}
+                    {!! $discount->dish->name !!}
                 </td>
                 <td class="px-6 py-4">
                     <form action="{{ route('kassa.discount.destroy', $discount->id) }}" method="POST">

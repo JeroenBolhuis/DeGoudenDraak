@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="text-center bg-gray-100 border-2 border-black py-8">
+        <h1 class="font-serif font-bold text-2xl">{{__('Call help')}}</h1>
         <form action="{{ route('restaurant.callhelp') }}" method="POST" class="flex flex-col items-center">
             @csrf
             <div class="mb-1 flex justify-center items-center"> <!-- Added flex utilities -->
