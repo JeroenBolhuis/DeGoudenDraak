@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ProfileController;
@@ -42,6 +43,9 @@ Route::middleware('auth')->prefix('backend')->group(function () {
         Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
         Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
         Route::resource('dish', DishController::class);
+      
+        Route::resource('discount', DiscountController::class);
+      
         Route::resource('table', TableController::class);
         Route::post('table/{table}/booking', [TableController::class, 'addBooking'])->name('table.addBooking');
         Route::post('table/{table}/resolve', [TableController::class, 'resolve'])->name('table.resolve');

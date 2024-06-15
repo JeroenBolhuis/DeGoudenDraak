@@ -9,6 +9,9 @@ class Discount extends Model
 {
     use HasFactory;
     
+    public $timestamps = false;
+    protected $table = 'discount';
+    
     public function dish() {
         return $this->belongsTo(Dish::class);
     }
