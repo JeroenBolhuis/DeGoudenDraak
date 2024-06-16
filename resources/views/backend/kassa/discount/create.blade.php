@@ -1,16 +1,10 @@
-@extends('layouts.backend.admin')
+@extends('layouts.backend.kassa')
 
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-<form action="{{ route('admin.discount.store') }}" method="POST" class="max-w-sm mx-auto">
+<form action="{{ route('kassa.discount.store') }}" method="POST" class="max-w-sm mx-auto">
+    @error('general')
+        <p class="text-red-500"> {{ $message }} </p>
+    @enderror
     @csrf
     <div class="mb-5">
         <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Startdatum</label>

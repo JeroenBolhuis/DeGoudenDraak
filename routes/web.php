@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\WebController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiscountController;
@@ -36,6 +37,8 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     // Kassa Routes
     Route::prefix('kassa')->name('kassa.')->group(function () {
         Route::get('/', [KassaController::class, 'index'])->name('index');
+        Route::resource('discount', DiscountController::class);
+        
         Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
 
         Route::post('/generate-pdf', [KassaController::class, 'generatePDF']);
@@ -45,9 +48,10 @@ Route::middleware('auth')->prefix('backend')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/sales', [AdminController::class, 'showSales'])->name('sales');
         Route::post('/sales', [AdminController::class, 'calculateRevenue'])->name('sales.calculate');
+
+        Route::get('/summaries/{file}', [AdminController::class, 'download']);
+
         Route::resource('dish', DishController::class);
-      
-        Route::resource('discount', DiscountController::class);
       
         Route::resource('table', TableController::class);
         Route::post('table/{table}/booking', [TableController::class, 'addBooking'])->name('table.addBooking');
@@ -87,6 +91,7 @@ Route::get('/menu', function () {
 
 Route::get('/downloadMenu', [DishController::class, 'downloadMenu'])->name('download-menu');
 
+Route::get('discounts', [WebController::class, 'showDiscounts'])->name('discounts');
 Route::get('/restaurant', function () {
     return view('web.restaurant');
 })->name('restaurant');

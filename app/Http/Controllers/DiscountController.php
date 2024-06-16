@@ -15,7 +15,7 @@ class DiscountController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        return view('discount.index', ['discounts' => $discounts]);
+        return view('backend.kassa.discount.index', ['discounts' => $discounts]);
     }
 
     /**
@@ -24,7 +24,7 @@ class DiscountController extends Controller
     public function create()
     {
         $dishes = Dish::all();
-        return view('discount.create', ['dishes' => $dishes]);
+        return view('backend.kassa.discount.create', ['dishes' => $dishes]);
     }
 
     /**
@@ -32,24 +32,51 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
-            'start_date' => 'required|date|after:now',
-            'end_date' => 'required|date|after:start_date',
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'required|date|after_or_equal:start_date',
             'price' => 'required|numeric',
-            'dish' => 'required|exists:dish,id' 
+            'dish' => 'required|exists:dish,id'
+        ], [
+            'start_date.after_or_equal' => 'The start date must be today or later.',
+            'end_date.after_or_equal' => 'The end date must be after the start date.',
         ]);
- 
+    
+        $dish = Dish::find($validated['dish']);
+    
+        if (!$dish) {
+            abort(404, 'Invalid dish selected.');
+        }
+    
+        if ($validated['price'] > $dish->price) {
+            return redirect()->back()->withErrors(['price' => 'The discount price cannot be higher than the normal price of the dish.']);
+        }
 
+        // Custom validation to check for overlapping discounts
+        $overlappingDiscount = Discount::where('dish_id', $validated['dish'])
+            ->where(function ($query) use ($validated) {
+                $query->whereBetween('start_date', [$validated['start_date'], $validated['end_date']])
+                    ->orWhereBetween('end_date', [$validated['start_date'], $validated['end_date']])
+                    ->orWhere(function ($query) use ($validated) {
+                        $query->where('start_date', '<=', $validated['start_date'])
+                            ->where('end_date', '>=', $validated['end_date']);
+                    });
+            })
+            ->first();
+    
+        if ($overlappingDiscount) {
+            return redirect()->back()->withErrors(['general' => 'Dates overlap existing discount for this item']);
+        }
+    
         $discount = new Discount();
-
+    
         $discount->start_date = $validated['start_date'];
         $discount->end_date = $validated['end_date'];
         $discount->price = $validated['price'];
         $discount->dish_id = $validated['dish'];
         $discount->save();
-
-        return redirect()->route('admin.discount.index');
+    
+        return redirect()->route('kassa.discount.index');
 
     }
 
@@ -80,8 +107,10 @@ class DiscountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Discount $discount)
     {
-        //
+        $discount->delete();
+    
+        return redirect()->route('kassa.discount.index')->with('success', 'Discount deleted successfully.');
     }
 }

@@ -20,4 +20,9 @@ class Sales extends Model
     public function table() {
         return $this->belongsTo(Table::class);
     }
+    
+    public function getTotalAmount()
+    {
+        return $this->dish->sum('price');
+    }
 }
