@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Discount;
 use App\Models\DishType;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Carbon;
 
 class DishController extends Controller
 {
@@ -115,5 +118,30 @@ class DishController extends Controller
         $dish->delete();
 
         return redirect()->route('admin.dish.index');
+    }
+
+    public function saveAsPdf() {
+        $dishes = Dish::with('discount')->get();
+        $discounts = Discount::all();
+
+
+        return view('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
+    }
+
+    public function downloadMenu() {
+        $dishes = Dish::all();
+        $now = Carbon::now();
+        $oneWeekLater = $now->copy()->addWeek();
+    
+        $discounts = Discount::where('end_date', '>=', $now)
+            ->where('start_date', '<=', $oneWeekLater)
+            ->get();
+    
+        $filename = 'menu_degoudendraak';
+    
+        $pdf = PDF::loadView('layouts.menu-template', compact('dishes', 'discounts'));
+        
+        return $pdf->download($filename . '.pdf');
+        
     }
 }
