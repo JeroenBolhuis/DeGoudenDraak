@@ -56,39 +56,71 @@
     }
 
     .content {
-            padding: 20px;
-            text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5em;
     }
 
-    .dish-item {
+    .menu {
+        font-family: sans-serif;
+        font-size: 14px;
+    }
+
+    .menu-group-heading {
+        margin: 0;
+        padding-bottom: 1em;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .menu-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+        padding: 1.5em 0;
+    }
+
+    .menu-item {
+        display: flex;
+    }
+
+    .menu-item-img {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        object-fit: cover;
+        margin-right: 1.5em;
+    }
+
+    .menu-item-text {
+        flex-grow: 1;
+    }
+
+    .menu-item-heading {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px; /* Adjust margin as needed */
+        margin: 0;
     }
 
-    .dish-info {
-        flex-grow: 1; /* This makes the .dish-info span take up remaining space */
+    .menu-item-name {
+        margin-right: 1.5em;
     }
 
-    .dish-info span {
-        margin-right: 10px; /* Adjust spacing between spans */
+    .menu-item-desc {
+        line-height: 1.6;
     }
 
-    .dish-price {
-        min-width: 80px; /* Adjust as needed to ensure consistent width for price */
-
-    }
-
-    /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-    @media screen and (max-width: 500px) {
-        .header a {
-            float: none;
-            display: block;
-            text-align: left;
+    @media screen and (min-width: 992px) {
+        .menu {
+            font-size: 16px;
         }
-        .header-right {
-            float: none;
+
+        .menu-group {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .menu-item-img {
+            width: 125px;
+            height: 125px;
         }
     }
 </style>
@@ -97,35 +129,29 @@
         <img class="logo" src="{{ Storage::disk('public')->url('dragon-small.png')}}" alt="Golden Dragon" max-heigth=150>
         <h1>De gouden draak</h1>
     </div>
-        <div class="content">
+    <div class="content">
+        <div class="menu">
             @foreach ($dishes->groupBy('dishtype') as $type => $dishesByType)
                 @if ($dishesByType->isNotEmpty())
-                    <h2>{{ $type }} </h2>
-                    <ul>
+                    <h2 class="menu-group-heading">{{ $type }}</h2>
+                    <div class="menu-group">
                         @foreach ($dishesByType as $dish)
-                        <li class="dish-item">
-                            <div class="dish-info">
-                                <span>{{ $dish->dishnumber }} {{ $dish->addition }}</span>
-                                <span>{!! $dish->name !!}</span>
+                        <div class="menu-item">
+                            <div class="menu-item-text">
+                                <h3 class="menu-item-heading">
+                                    <span class="menu-item-name">{!! $dish->name !!}</span>
+                                    <span class="menu-item-price">€{{ number_format($dish->price, 2) }}
+                                </h3>
+                                <p class="menu-item-desc">
+                                    {{ $dish->description }}
+                                </p>
                             </div>
-                            <span class="dish-price">€{{ number_format($dish->price, 2) }}</span>
-                        </li>
+                        </div>
                         @endforeach
-                    </ul>
+                    </div>	
                 @endif
             @endforeach
-            @foreach($discounts as $discount)
-            <h1>{{ $discount->start_date }}</h1>
-            <ul>
-                @if($discount->dishes && $discount->dishes->count() > 0)
-                    @foreach($discount->dishes as $dish)
-                        <li>{{ $dish->name }}</li>
-                    @endforeach
-                @else
-                    <li>No dishes associated with this discount</li>
-                @endif
-            </ul>
-        @endforeach
         </div>
+    </div>
 </body>
 </html>

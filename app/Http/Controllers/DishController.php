@@ -123,7 +123,7 @@ class DishController extends Controller
         $dishes = Dish::with('discount')->get();
         $discounts = Discount::all();
 
-        dd($dishes);
+
         return view('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
     }
 
@@ -132,8 +132,10 @@ class DishController extends Controller
         $discounts = Discount::all();
         $filename = 'menu_degoudendraak';
 
-        $pdf= Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
-        return $pdf->download('$filename');
+        // $pdf= Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
+        // return $pdf->download($filename);
+        $pdf = Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
+        return $pdf->download($filename . '.pdf');
         
     }
 }
