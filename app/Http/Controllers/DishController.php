@@ -7,6 +7,7 @@ use App\Models\Discount;
 use App\Models\DishType;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Carbon;
 
 class DishController extends Controller
 {
@@ -128,13 +129,19 @@ class DishController extends Controller
     }
 
     public function downloadMenu() {
-        $dishes = Dish::with('discount')->get();
-        $discounts = Discount::all();
+        $dishes = Dish::all();
+        $now = Carbon::now();
+        $oneWeekLater = $now->copy()->addWeek();
+    
+        $discounts = Discount::where('end_date', '>=', $now)
+            ->where('start_date', '<=', $oneWeekLater)
+            ->get();
+
         $filename = 'menu_degoudendraak';
 
         // $pdf= Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
         // return $pdf->download($filename);
-        $pdf = Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
+        $pdf = Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, compact($discounts)]);
         return $pdf->download($filename . '.pdf');
         
     }
