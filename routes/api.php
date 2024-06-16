@@ -2,17 +2,26 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::post('/revenue', function (Request $request) {
+    $request->validate([
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after_or_equal:start_date',
+    ]);
+
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
+
+    $revenue = DB::table('dish_has_sales')
+        ->join('sales', 'dish_has_sales.sales_id', '=', 'sales.id')
+        ->join('dish', 'dish_has_sales.dish_id', '=', 'dish.id')
+        ->whereBetween('sales.date', [$startDate, $endDate])
+        ->sum('dish.price');
+
+    return response()->json(['revenue' => $revenue]);
+});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -1,4 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: 'ChineseTakeaway';
+    src: url('../../public/fonts/CHINESETAKEAWAY.ttf') format('truetype');
+}
+.font-chinese_takeaway {
+    font-family: 'ChineseTakeaway', sans-serif;
+}
+
+.masonry {
+    column-count: 3;
+    column-gap: 1rem;
+}
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+}
 
