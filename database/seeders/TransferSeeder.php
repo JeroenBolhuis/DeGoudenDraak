@@ -16,23 +16,23 @@ class TransferSeeder extends Seeder
         // Insert unique dish types
         // Insert unique dish types
         DB::transaction(function () {
-            DB::table('degoudendraak.dishtype')->insertUsing(
+            DB::table('dishtype')->insertUsing(
                 ['type'],
                 DB::table('gouden_draak.menu')->distinct()->select('soortgerecht')
                     ->whereNotIn('soortgerecht', function ($query) {
-                        $query->select('type')->from('degoudendraak.dishtype');
+                        $query->select('type')->from('dishtype');
                     })
             );
         });
 
         // Insert dishes
-        DB::table('degoudendraak.dish')->insertUsing(
+        DB::table('dish')->insertUsing(
             ['dishnumber', 'addition', 'name', 'price', 'description', 'dishtype'],
             DB::table('gouden_draak.menu')->select('menunummer', 'menu_toevoeging', 'naam', 'price', 'beschrijving', 'soortgerecht')
         );
 
         // Insert sales without table_id
-        DB::table('degoudendraak.sales')->insertUsing(
+        DB::table('sales')->insertUsing(
             ['date', 'table_idtable'],
             DB::table('gouden_draak.sales')->select('saleDate', DB::raw('NULL AS table_idtable'))
         );
@@ -40,7 +40,7 @@ class TransferSeeder extends Seeder
         // Insert dish sales data into the new schema
         $amounts = [1, 2, 3, 4];
         foreach ($amounts as $amount) {
-            DB::table('degoudendraak.dish_has_sales')->insertUsing(
+            DB::table('dish_has_sales')->insertUsing(
                 ['dish_id', 'sales_id', 'comment'],
                 DB::table('gouden_draak.sales')
                     ->where('amount', $amount)
