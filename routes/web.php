@@ -89,7 +89,7 @@ Route::get('/menu', function () {
     return view('web.menu');
 })->name('menu');
 
-Route::get('/downloadMenu', [DishController::class, 'downloadMenu'])->name('download-menu');
+Route::get('/download-menu', [DishController::class, 'downloadMenu'])->name('download-menu');
 
 Route::get('discounts', [WebController::class, 'showDiscounts'])->name('discounts');
 Route::get('/restaurant', function () {

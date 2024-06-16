@@ -136,12 +136,11 @@ class DishController extends Controller
         $discounts = Discount::where('end_date', '>=', $now)
             ->where('start_date', '<=', $oneWeekLater)
             ->get();
-
+    
         $filename = 'menu_degoudendraak';
-
-        // $pdf= Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
-        // return $pdf->download($filename);
-        $pdf = Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, compact($discounts)]);
+    
+        $pdf = PDF::loadView('layouts.menu-template', compact('dishes', 'discounts'));
+        
         return $pdf->download($filename . '.pdf');
         
     }
