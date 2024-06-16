@@ -85,9 +85,7 @@ Route::get('/home', function () {
 Route::get('/news', function () {
     return view('web.news');
 })->name('news');
-Route::get('/menu', function () {
-    return view('web.menu');
-})->name('menu');
+Route::get('/menu', [DishController::class, 'indexCustomer'])->name('menu');
 
 Route::get('/download-menu', [DishController::class, 'downloadMenu'])->name('download-menu');
 

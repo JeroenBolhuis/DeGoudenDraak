@@ -20,6 +20,10 @@ class DishController extends Controller
         return view('backend.admin.dish.index', ['dishes' => $dishes]);
     }
 
+    public function indexCustomer() {
+        $dishes = Dish::all()->groupBy('dishtype');
+        return view('web.menu', ['dishes' => $dishes]);
+    }
     /**
      * Show the form for creating a new resource.
      */
