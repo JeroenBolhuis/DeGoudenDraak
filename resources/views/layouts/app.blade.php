@@ -94,7 +94,10 @@
 											</form>
                                             <div class="max-w-xl mx-auto"> <!-- Set maximum width and center the div -->
                                                 <div class="flex px-1 py-2 border border-gray-500">
-                                                    <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+                                                    <a href="{{ route('download-menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
+														{{__('Download menu')}}
+                                                    </a>
+													<a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
 														{{__('Menu')}}
                                                     </a>
                                                     <a href="{{ route('restaurant') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 ml-3 rounded">

@@ -1,4 +1,4 @@
-@extends('layouts.admin2')
+@extends('layouts.backend.admin')
 
 @section('content')
 <div class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg mb-4 text-gray-900 px-8 pt-8 pb-8 md-4 dark:bg-gray-800 dark:text-white">
@@ -25,7 +25,7 @@
                     Einddatum
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Prijnmn
+                    Prijs
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Gerecht

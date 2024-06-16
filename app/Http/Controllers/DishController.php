@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Discount;
 use App\Models\DishType;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DishController extends Controller
 {
@@ -115,5 +117,23 @@ class DishController extends Controller
         $dish->delete();
 
         return redirect()->route('admin.dish.index');
+    }
+
+    public function saveAsPdf() {
+        $dishes = Dish::with('discount')->get();
+        $discounts = Discount::all();
+
+        dd($dishes);
+        return view('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
+    }
+
+    public function downloadMenu() {
+        $dishes = Dish::with('discount')->get();
+        $discounts = Discount::all();
+        $filename = 'menu_degoudendraak';
+
+        $pdf= Pdf::loadView('layouts.menu-template', ['dishes' => $dishes, 'discounts' => $discounts]);
+        return $pdf->download('$filename');
+        
     }
 }

@@ -18,6 +18,9 @@
         <button @click="checkout" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">
             Afrekenen
         </button>
+        <button @click="generatePdf" class="w-full bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mt-4">
+            Sla rekening op als pdf
+        </button>
     </div>
 </template>
 
@@ -51,6 +54,24 @@ export default {
                 console.error('Checkout error:', error);
                 console.log('Checkout error response:', error.response.data); // Log the error response
                 alert('Er is iets misgegaan bij het afrekenen.');
+            }
+        },
+        async generatePdf() {
+            try{
+                const response = await axios.post('/backend/kassa/generate-pdf', {items: this.items}, {responseType: 'blob'});
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'rekening.pdf');
+                document.body.appendChild(link); // Append the link element, not the string 'link'
+                link.click();
+                document.body.removeChild(link); // Remove the link element, not the string 'link'
+                window.URL.revokeObjectURL(url); // Clean up the URL object
+            } catch(error) {
+                console.error('PDF Generation error:', error);
+                if (error.response && error.response.data) {
+                    console.log('PDF Generation error response:', error.response.data); // Log the error response
+                }
             }
         },
     },

@@ -17,6 +17,10 @@ public_html/hot
 
 storage/*.key
 .env
+.env.acceptatie
+.env.ontwikkeling
+.env.productie
+.env.testing
 Homestead.yaml
 Homestead.json
 /.vagrant
