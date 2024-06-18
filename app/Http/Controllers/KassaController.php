@@ -9,9 +9,6 @@ use App\Models\DishHasSale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
-use Barryvdh\DomPDF\PDF;
-use Illuminate\Support\Facades\Storage;
 
 class KassaController extends Controller
 {
@@ -50,60 +47,6 @@ class KassaController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500); // Send the error message in response
         }
-    }
-
-    public function saveAsPdf() {
-    
-        return view('backend.kassa.rekening-template');
-    }
-
-    public function generatePDF(Request $request)  {
-        // $items = $request->input('items');
-        
-        // $data = [
-        //     'logo' => public_path('storage/dragon-small.png'),
-        //     'items' => $items,
-        //     'totalPrice' => array_reduce($items, function ($carry, $item) {
-        //         return $carry + ($item['price'] * $item['quantity']);
-        //     }, 0)
-        // ];
-
-        // try {
-        //     $pdf = FacadePdf::loadView('backend.kassa.rekening-template', $data);
-        //     return $pdf->setPaper([0, 0, 241, 283])->download('rekening.pdf');
-        // } catch (\Exception $e) {
-        //     \Log::error('PDF Generation Error: ' . $e->getMessage());
-        //     return response()->json(['error' => 'Failed to generate PDF'], 500);
-        // }
-        try {
-            $items = $request->input('items');
-    
-            // Ensure $items is not empty before proceeding
-            if (empty($items)) {
-                throw new \Exception('No items provided for PDF generation.');
-            }
-            
-            $data = [
-                'logo' => public_path('storage/dragon-small.png'),
-                'items' => $items,
-                'totalPrice' => array_reduce($items, function ($carry, $item) {
-                    return $carry + ($item['price'] * $item['quantity']);
-                }, 0)
-            ];
-    
-            // Ensure the view exists before attempting to load it
-            if (!view()->exists('backend.kassa.rekening-template')) {
-                throw new \Exception('Template not found.');
-            }
-    
-            $pdf = FacadePdf::loadView('backend.kassa.rekening-template', $data);
-    
-            return $pdf->setPaper([0, 0, 241, 283])->download('rekening.pdf');
-        } catch (\Exception $e) {
-            \Log::error('PDF Generation Error: ' . $e->getMessage());
-            return response()->json(['error' => 'Failed to generate PDF'], 500);
-        }
-
     }
     
 }

@@ -33,15 +33,12 @@ Route::middleware('auth')->prefix('backend')->group(function () {
         return view('backend.index');
     })->name('backend');
 
-    Route::get('/menu', [DishController::class, 'saveAsPdf'])->name('menu');
     // Kassa Routes
     Route::prefix('kassa')->name('kassa.')->group(function () {
         Route::get('/', [KassaController::class, 'index'])->name('index');
         Route::resource('discount', DiscountController::class);
         
         Route::post('/checkout', [KassaController::class, 'store'])->name('checkout');
-
-        Route::post('/generate-pdf', [KassaController::class, 'generatePDF']);
     });
 
     // Admin Routes
@@ -85,10 +82,9 @@ Route::get('/home', function () {
 Route::get('/news', function () {
     return view('web.news');
 })->name('news');
-Route::get('/menu', [DishController::class, 'indexCustomer'])->name('menu');
-
-Route::get('/download-menu', [DishController::class, 'downloadMenu'])->name('download-menu');
-
+Route::get('/menu', function () {
+    return view('web.menu');
+})->name('menu');
 Route::get('discounts', [WebController::class, 'showDiscounts'])->name('discounts');
 Route::get('/restaurant', function () {
     return view('web.restaurant');

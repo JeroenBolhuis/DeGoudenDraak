@@ -97,9 +97,6 @@
                                                     <a href="{{ route('menu') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 rounded">
 														{{__('Menu')}}
                                                     </a>
-													<a href="{{ route('download-menu') }}" class="flex-grow btn text-white bg-gradient-to-b from-blue-300 to-blue-900 py-1 rounded">
-														{{__('Download menu')}}
-                                                    </a>
                                                     <a href="{{ route('restaurant') }}" class="flex-grow btn text-white bg-gradient-to-br from-blue-300 to-blue-900 py-1 ml-3 rounded">
 														{{__('Restaurant')}}
                                                     </a>

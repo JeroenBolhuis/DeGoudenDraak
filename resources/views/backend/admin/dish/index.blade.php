@@ -57,13 +57,13 @@
                 </td>
                 <td class="px-6 py-4 flex justify-end items-center">
                     <a href="{{ route('admin.dish.edit', $dish->id) }}" class="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                        {{__('Bewerken')}}
+                        {{__('edit')}}
                     </a>
                     <form action="{{ route('admin.dish.destroy', $dish->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-white bg-red-700 hover:bg-red-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                            {{__('Verwijderen')}}
+                            {{__('delete')}}
                         </button>
                     </form>
                 </td>
