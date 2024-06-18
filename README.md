@@ -1,2 +1,3 @@
-# degoudendraak-sebastiaan-bolwijn-jeroen-bolhuis
-Opdracht voor web-fullstack om de gouden draak te verbeteren
+# degoudendraak
+Opdracht voor web-fullstack
+Verbeterings website met laravel en Vuejs voor chinees restaurant
